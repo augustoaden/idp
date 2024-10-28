@@ -32,8 +32,8 @@ def student_performance_in_subject(idp_student):
 
     Por defecto se retorna 'bajo' si el IDP es menor a 25.
 
-    @:param idp_student: IDP del estudiante.
-    @:return str: Rendimiento del estudiante.
+    :param idp_student: IDP del estudiante.
+    :return str: Rendimiento del estudiante.
     """
     performance = 'bajo'
 
@@ -50,6 +50,10 @@ def student_performance_in_subject(idp_student):
 def top_ten(conn, subject_id, students_ids):
     """
     Obtiene los 10 mejores estudiantes en función de su IDP.
+
+    :param conn: Conexión a la base de datos.
+    :param subject_id: ID de la asignatura.
+    :param students_ids: Lista de estudiantes matriculados en la asignatura.
     """
     # Calcula el número de estudiantes que representa el 10% de los alumnos en la asignatura
     top_ten_count = max(1, int(len(students_ids) * 0.10))
@@ -65,6 +69,7 @@ def top_ten(conn, subject_id, students_ids):
         LIMIT %s
     """
 
+    # Obtiene los ID de los 10 mejores estudiantes en la asignatura
     top_candidates_ids = db_operations.execute_query(conn, query_select, params=(students_ids, subject_id, top_ten_count), fetch=True)
 
     if top_candidates_ids:

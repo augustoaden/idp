@@ -3,6 +3,9 @@ import db_operations
 
 
 def get_activities_to_be_presented(conn, subject_id):
+    """
+    Se obtiene la cantidad de actividades que el alumno debe presentar en una asignatura.
+    """
     query = """
         SELECT racas.asignatura_id,
         count(*) AS trabajos_a_presentar
@@ -15,6 +18,9 @@ def get_activities_to_be_presented(conn, subject_id):
 
 
 def get_activities_presented(conn, subject_id, partner_id):
+    """
+    Se obtiene la cantidad de actividades presentadas por el alumno en una asignatura.
+    """
     query = """
         SELECT raca.partner_id,
         raca.asignatura_id,
@@ -31,9 +37,9 @@ def visualization_resources(conn, partner_id, subject_id):
     """
     Se obtiene la visualización de los recursos en función del progreso total del alumno en la asignatura.
 
-    @:param partner_id: ID del estudiante.
-    @:param subject_id: ID de la asignatura.
-    @:return float: Visualización de recursos o mensaje de error.
+    :param partner_id: ID del estudiante.
+    :param subject_id: ID de la asignatura.
+    :return float: Visualización de recursos o mensaje de error.
     """
     query = """
     SELECT progreso 
@@ -166,8 +172,8 @@ def amount_inactive_days(enrollment_last_login):
 
     En caso de que no se conozca la fecha de último ingreso, se retorna la valoración más baja: 1/3.
 
-    @:param enrollment_last_login: Fecha del último ingreso del alumno en la asignatura.
-    @:return float: Días de inactividad.
+    :param enrollment_last_login: Fecha del último ingreso del alumno en la asignatura.
+    :return float: Días de inactividad.
     """
     days_inactive = 1/3
 
