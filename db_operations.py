@@ -1,7 +1,9 @@
 import os
+
 import psycopg2
 from dotenv import load_dotenv
 
+# Cargar variables de entorno
 load_dotenv("production.env")
 
 

@@ -1,5 +1,5 @@
-from idp import idp_calculations_indicators
 import db_operations
+from idp import idp_calculations_indicators
 
 
 def get_idp_scores(conn, partner_id, subject_id, dates_enrollment):
