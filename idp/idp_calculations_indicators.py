@@ -69,6 +69,8 @@ def submission_activities(conn, partner_id, subject_id):
 
     if activities_to_be_presented == 0:
         return 0.0
+    elif activities_presented >= activities_to_be_presented:
+        return 1.0
 
     return round(activities_presented / activities_to_be_presented, 2)
 
@@ -176,13 +178,13 @@ def amount_inactive_days(enrollment_last_login):
     :param enrollment_last_login: Fecha del último ingreso del alumno en la asignatura.
     :return float: Días de inactividad.
     """
-    days_inactive = 1/3
+    indicator = 1/3
 
     if enrollment_last_login:
         days_inactive = (datetime.datetime.now().date() - enrollment_last_login.date()).days
         if days_inactive < 7:
-            days_inactive = 1
+            indicator = 1
         elif days_inactive < 14:
-            days_inactive = 2/3
+            indicator = 2/3
 
-    return round(days_inactive, 2)
+    return round(indicator, 2)
